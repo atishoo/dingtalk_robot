@@ -4,6 +4,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 namespace Atishoo;
 
+
+/**
+ * 钉钉机器人类库
+ *
+ * 构造方法传入webhook即可
+ *
+ * 使用方法setText()->send()为发送文本消息
+ * 使用方法setLink()->send()为发送超文本消息
+ * 使用方法setMarkdown()->send()为发送makrdown消息
+ * 使用方法setFeedcard()->send()为发送多媒体消息
+ * 
+ */
 class DingtalkRobot {
 
     private $_web_hook='';

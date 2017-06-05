@@ -2,7 +2,7 @@
     "name": "atishoo/dingtalk_robot",
     "description": "钉钉机器人php库",
     "type": "library",
-    "license": "apache",
+    "license": "MIT",
     "authors": [
         {
             "name": "atishoo",
