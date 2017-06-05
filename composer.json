@@ -1,0 +1,14 @@
+{
+    "name": "atishoo/dingtalk_robot",
+    "description": "钉钉机器人php库",
+    "type": "library",
+    "license": "apache",
+    "authors": [
+        {
+            "name": "atishoo",
+            "email": "467237923@qq.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {}
+}
