@@ -9,6 +9,8 @@
             "email": "467237923@qq.com"
         }
     ],
+    "require": {
+        "php": ">=5.5"
+    },
     "minimum-stability": "stable",
-    "require": {}
 }
