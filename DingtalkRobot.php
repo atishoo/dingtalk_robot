@@ -122,6 +122,42 @@ class DingtalkRobot {
     }
 
     /**
+     * 设置action消息
+     * @param string $text  markdown格式的消息
+     * @param string $title 标题
+     * @param array $btns 每个button包含title、actionURL两个键值
+     * @param int $btnOrientation 0-按钮竖直排列，1-按钮横向排列
+     * @param int $hideAvatar 0-正常发消息者头像,1-隐藏发消息者头像
+     */
+    public function setActionCard($text='', $title = '',$btns = array(),$btnOrientation=0,$hideAvatar=1)
+    {
+        $this->setMsgType(4);
+
+        if (empty($text)) {
+            return '内容不能为空';
+        }else{
+            $this->_MESSAGE['actionCard']['text'] = $text;
+        }
+
+        if (empty($title)) {
+            return '标题不能为空';
+        }else{
+            $this->_MESSAGE['actionCard']['title'] = $title;
+        }
+
+        if (empty($btns)) {
+            return '按钮不能为空';
+        }else{
+            $this->_MESSAGE['actionCard']['btns'] = $btns;
+        }
+
+        $this->_MESSAGE['actionCard']['hideAvatar'] = $hideAvatar;
+
+        $this->_MESSAGE['actionCard']['btnOrientation'] = $btnOrientation;
+        return $this;
+    }
+
+    /**
      * 设置多媒体消息
      * @param array $data 必须包含title，messageURL，picURL的数组
      */
