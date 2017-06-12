@@ -1,7 +1,4 @@
 <?php
-
-defined('BASEPATH') OR exit('No direct script access allowed');
-
 namespace Atishoo;
 
 
@@ -14,7 +11,7 @@ namespace Atishoo;
  * 使用方法setLink()->send()为发送超文本消息
  * 使用方法setMarkdown()->send()为发送makrdown消息
  * 使用方法setFeedcard()->send()为发送多媒体消息
- * 
+ *
  */
 class DingtalkRobot {
 
@@ -175,15 +172,15 @@ class DingtalkRobot {
      * @param string $needstatus    是否需要状态报告
      */
     public function send($needstatus = 1) {
-        $ch = curl_init();  
+        $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $this->_web_hook);
-        curl_setopt($ch, CURLOPT_POST, 1); 
+        curl_setopt($ch, CURLOPT_POST, 1);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false); // 跳过证书检查
         curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false); // 跳过服务器检查
-        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10); 
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
         curl_setopt($ch, CURLOPT_HTTPHEADER, array ('Content-Type: application/json;charset=utf-8'));
         curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($this->_MESSAGE));
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);  
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         $result = curl_exec($ch);
         curl_close($ch);
 
