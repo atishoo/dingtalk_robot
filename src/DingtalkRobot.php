@@ -19,6 +19,8 @@ class DingtalkRobot {
 
     private $_MESSAGE = array('msgtype'=>'text');
 
+    private $_secret = '';
+
     public function __construct($webhook)
     {
         $this->_web_hook = $webhook;
@@ -52,6 +54,12 @@ class DingtalkRobot {
                 $this->_MESSAGE['msgtype'] = 'feedCard';
                 break;
         }
+    }
+
+    public function setSecret($secret = '')
+    {
+        $this->_secret = $secret;
+        return $this;
     }
 
     public function setText($text='', $atMobiles = array(), $isAtAll = false)
@@ -172,8 +180,15 @@ class DingtalkRobot {
      * @param string $needstatus    是否需要状态报告
      */
     public function send($needstatus = 1) {
+        $webhook = $this->_web_hook;
+        if (!empty($this->_secret)) {
+            $timestamp = time() * 1000;
+            $sign = urlencode(base64_encode(hash_hmac('sha256', $timestamp."\n".$this->_secret, $this->_secret, true)));
+            $webhook .= '&'.http_build_query(['timestamp'=>$timestamp, 'sign'=>$sign]);
+        }
+
         $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $this->_web_hook);
+        curl_setopt($ch, CURLOPT_URL, $webhook);
         curl_setopt($ch, CURLOPT_POST, 1);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false); // 跳过证书检查
         curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false); // 跳过服务器检查
@@ -185,6 +200,8 @@ class DingtalkRobot {
         curl_close($ch);
 
         $result = json_decode($result, true);
+
+        var_dump($result);
 
         if (array_key_exists('errcode', $result) && $result['errcode'] == 0) {
             return true;
