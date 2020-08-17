@@ -201,8 +201,6 @@ class DingtalkRobot {
 
         $result = json_decode($result, true);
 
-        var_dump($result);
-
         if (array_key_exists('errcode', $result) && $result['errcode'] == 0) {
             return true;
         }else{
