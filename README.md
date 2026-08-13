@@ -1,3 +1,5 @@
+
+
 # dingtalk_robot
 ##### 钉钉机器人php库
 
@@ -15,7 +17,7 @@
 
 ###### 2.实例化类
 `$dingtalk = new DingtalkRobot($webhook);`
->  如安全验证为加签方式，可再次设置密钥    如安全验证为加签方式，可再次设置密钥
+> 如安全验证为加签方式，可再次设置密钥
 > `$dingtalk->setSecret(text);`
 > 此方法同样支持链式调用，只需要在send()前设置即可。
 
